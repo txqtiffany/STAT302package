@@ -15,8 +15,6 @@ devtools::install_github("txqtiffany/STAT302package", build_vignette = TRUE, bui
 library(STAT302package)
 ```
 
-and include a call to `library()` when using it.
-
 ## Use
 
 The vignette demonstrates example usage of all main functions. You can see the vignette by using the following code:
