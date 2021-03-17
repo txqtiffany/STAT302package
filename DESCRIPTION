@@ -6,8 +6,9 @@ Authors@R:
            family = "Tian",
            role = c("aut", "cre"),
            email = "txqtiffany@gmail.com")
-Description: A demonstration of package building
+Description: A demonstration of package building.
 License: GPL (>= 3)
+Imports: tibble
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

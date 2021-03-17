@@ -25,15 +25,24 @@ You can install the STAT302package using the following line:
 devtools::install_github("txqtiffany/STAT302package", build_vignette = TRUE, build_opts = c())
 ```
 
-and include a call to `library()` when using it.
-
 ## A tutorial for `my_t.test`
 
 This is a basic example which shows you how to use `my_t.test`:
 
 ```{r my_t.test}
 library(STAT302package)
+t.test_1 <- my_t.test(my_gapminder$lifeExp, "two.sided", 60)
+t.test_1$p_val
+t.test_2 <- my_t.test(my_gapminder$lifeExp, "less", 60)
+t.test_2$p_val
+t.test_3 <- my_t.test(my_gapminder$lifeExp, "greater", 60)
+t.test_3$p_val
 ```
+With the p-value cut-off of α = 0.05, we can conclude that for the first test, since `r t.test_1$p_val` > 0.05, we cannot reject the null hypothesis and there is insufficient evidence to support that the true mean of life expectency is not equal to 60. 
+For the second test, since `r t.test_2$p_val` < 0.05, we can reject the null hypothesis and there is sufficient evidence to support that the true mean of life expectency is less than 60. 
+For the third test, since `r t.test_3$p_val` > 0.05, we cannot reject the null hypothesis and there is insufficient evidence to support that the true mean of life expectency is greater than 60. 
+Therefore, at the 5% significance level, there is sufficient evidence to support the claim that the true mean of life expectency is less than 60.
+
 
 ## A tutorial for `my_lm`
 
