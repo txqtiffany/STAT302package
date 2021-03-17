@@ -1,13 +1,12 @@
 Package: STAT302package
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
+Title: Package Building Demonstration
+Version: 0.1.0
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Tiffany",
+           family = "Tian",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+           email = "txqtiffany@gmail.com")
+Description: A demonstration of package building
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
