@@ -1,4 +1,4 @@
-library(dplyr)
+# library(dplyr)
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
   fold <- sample(rep(1:k_cv, length = length(cl)))
   data <- data.frame("x" = train, "y" = cl, "split" = fold)

@@ -1,4 +1,4 @@
-library(dplyr)
+# library(dplyr)
 my_rf_cv <- function(k) {
   fold <- sample(rep(1:k, length = length(na.omit(penguins)$species)))
   data <- data.frame(na.omit(penguins), "split" = fold)
