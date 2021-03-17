@@ -8,7 +8,7 @@ The goal of STAT302package is to ...
 
 ## Installation
 
-You can install the released version of STAT302package from [CRAN](https://CRAN.R-project.org) with:
+You can install the STAT302package using the following line:
 
 ``` r
 devtools::install_github("txqtiffany/STAT302package", build_vignette = TRUE, build_opts = c())
