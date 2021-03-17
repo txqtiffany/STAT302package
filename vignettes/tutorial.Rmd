@@ -15,6 +15,46 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+The goal of STAT302package is to demonstrate my learning on how to develop a well-documented, well- tested, and well-explained R package from the course of STAT 302. 
+
+## Installation
+
+You can install the STAT302package using the following line:
+
+``` {r install, eval = FALSE}
+devtools::install_github("txqtiffany/STAT302package", build_vignette = TRUE, build_opts = c())
+```
+
+and include a call to `library()` when using it.
+
+## A tutorial for `my_t.test`
+
+This is a basic example which shows you how to use `my_t.test`:
+
+```{r my_t.test}
+library(STAT302package)
+```
+
+## A tutorial for `my_lm`
+
+This is a basic example which shows you how to use `my_lm`:
+
+```{r my_lm}
+library(STAT302package)
+```
+
+## A tutorial for `my_knn_cv`
+
+This is a basic example which shows you how to use `my_knn_cv`:
+
+```{r my_knn_cv}
+library(STAT302package)
+```
+
+## A tutorial for `my_rf_cv`
+
+This is a basic example which shows you how to use `my_rf_cv`:
+
+```{r my_rf_cv}
 library(STAT302package)
 ```
