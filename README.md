@@ -2,6 +2,7 @@
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/txqtiffany/STAT302package/workflows/R-CMD-check/badge.svg)](https://github.com/txqtiffany/STAT302package/actions)
+[![codecov](https://codecov.io/gh/txqtiffany/STAT302package/branch/master/graph/badge.svg?token=PIG9B2W870)](https://codecov.io/gh/txqtiffany/STAT302package)
 <!-- badges: end -->
 
 The goal of STAT302package is a demonstration on my learning of developing a well-documented, well-tested, and well-explained R package from the course of STAT 302. 
