@@ -1,3 +1,18 @@
+#' Random Forest Cross-Validation
+#'
+#' This function implements random forest algorithm for classification and regression.
+#'
+#' @param k number of folds
+#' @keywords perdiction
+#'
+#' @return a numeric with the cross-validation error
+#'
+#' @examples
+#' library(palmerpenguins)
+#' data(package = "palmerpenguins")
+#' my_rf_cv(5)
+#'
+#' @export
 my_rf_cv <- function(k) {
   fold <- sample(rep(1:k, length = length(na.omit(penguins)$species)))
   data <- data.frame(na.omit(penguins), "split" = fold)
