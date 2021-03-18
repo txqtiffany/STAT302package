@@ -14,9 +14,9 @@
 #'
 #' @export
 my_rf_cv <- function(k) {
-  my_penguins <- STAT302package::my_penguins
-  fold <- sample(rep(1:k, length = length(na.omit(my_penguins)$species)))
-  data <- data.frame(na.omit(my_penguins), "split" = fold)
+  my_penguins <- na.omit(STAT302package::my_penguins)
+  fold <- sample(rep(1:k, length = length(my_penguins$species)))
+  data <- data.frame(my_penguins, "splits" = fold)
   mse <- c()
   for (i in 1:k) {
     data_train <- data[data$splits != i, ]
