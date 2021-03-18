@@ -40,6 +40,7 @@ my_knn_cv <- function(train, cl, k_nn, k_cv) {
     perdiction <- class::knn(data_train, data_test, data_train$y, k_nn)
     cv_err[i] <- sum(perdiction != data_test$y) / length(perdiction)
   }
-  output <- list("class" = class::knn(data_train, data_test, data_train$y, k_nn), "cv_err" = mean(cv_err))
+  output <- list("class" = class::knn(data, data, data$y, k_nn), "cv_err" = mean(cv_err))
   return(output)
 }
+

@@ -91,7 +91,28 @@ This is a basic example which shows you how to use `my_knn_cv`:
 
 ```{r my_knn_cv}
 library(STAT302package)
+library(kableExtra)
+penguins_df <- na.omit(my_penguins)
+train <- lapply(penguins_df[c("bill_length_mm", "bill_depth_mm",
+                              "flipper_length_mm", "body_mass_g")], as.numeric)
+cl <- as.numeric(penguins_df$species)
+train_err <- c()
+cv_err <- c()
+for (i in 1:10) {
+  knn_model <- my_knn_cv(train, cl, i, 5)
+  cv_err[i] <- knn_model$cv_err
+  train_err[i] <- sum(knn_model$class != cl) / length(my_penguins$species)
+}
+err_table <- data.frame("k_nn" = c(1:10), "train_err" = train_err, "cv_err" = cv_err)
+kable_styling(kable(err_table))
 ```
+
+State which model you would choose based on the training misclassification rates and which model you would choose based on the CV misclassification rates.
+
+Base on the training misclassification, besides the trivial set of k_nn = 1 where the error trivially equals to 0, I would choose k_nn = 2 with the lowest error. Base on the CV misclassification rates, I would choose k_nn = 1 with the lowest error.
+
+However, in practice, I would choose k_nn = 7 because that is an optimal point where both the training and misclassification errors dropped as K increase, and that the number of neighbors isn't too small for it to be overfitting. We're using cross-validation here which is a technique that is used to protect against overfitting in a predictive model. We do this by making a fixed number of folds (in this case, 5) of the data, run the analysis on each fold, and then average the overall error estimate.
+
 
 ## A tutorial for `my_rf_cv`
 
