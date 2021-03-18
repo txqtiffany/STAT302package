@@ -19,7 +19,7 @@ Estimate, Std. Error, t value, and Pr(>|t|).
 This function is used to fit linear models in R.
 }
 \examples{
-my_lm(formula = mpg ~ hp + wt, data = mtcars))
+my_lm(formula = mpg ~ hp + wt, data = mtcars)
 
 }
 \keyword{inference,}
