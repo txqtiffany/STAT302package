@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The goal of STAT302package is to demonstrate my learning on how to develop a well-documented, well- tested, and well-explained R package from the course of STAT 302. 
+The goal of STAT302package is to demonstrate my learning on how to develop a well-documented, well- tested, and well-explained R package from the course of STAT 302. Thank you to our instructor Bryan for teaching this course with great passion!
 
 ## Installation
 

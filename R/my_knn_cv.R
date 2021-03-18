@@ -30,6 +30,9 @@
 #'
 #' @export
 my_knn_cv <- function(train, cl, k_nn, k_cv) {
+  if(!is.numeric(k_nn) || !is.numeric(k_cv)) {
+    stop("k_nn and k_cv must be numeric!")
+  }
   fold <- sample(rep(1:k_cv, length = length(cl)))
   data <- data.frame("x" = train, "y" = cl, "splits" = fold)
   class <- c()
