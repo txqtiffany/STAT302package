@@ -62,25 +62,20 @@ model[2, 4] < 0.05
 Within the model, we can tell by the fourth column, which is our p values, that `r model[2, 4]` is less our cutoff of α = 0.05. Therefore, we reject the null coefficient that the mean of gdpPercap is 0, indicating that it is indeed significance. The reason behind why the number is so small might be because of the large scale of gdpPercap comparing to lifeExp.
 
 Now, we will use ggplot2 to plot the Actual vs. Fitted values.
-Interpret the Actual vs. Fitted plot and make a statement on what it tells you about model fit.
 
 ```{r my_lm part 3}
-continent_value <- function(continent) {
-  if (continent == "Americas") {
-    return(model[1, 3])
-  } else if (continent == "Asia") {
-    return(model[1, 4])
-  } else if (continent == "Europe") {
-    return(model[1, 5])
-  } else if (continent == "Oceania") {
-    return(model[1, 6])
-  } else {
-    return(0)
-  }
-}
+# FINDING fitted yhat
+# getting the matrix of the estimates value 
+my_estimates <- as.matrix(model[,"Estimate"])
 
-mod_fits <- model[1, 1] + my_gapminder$gdpPercap * model[1, 2] + continent_value(as.vector(my_gapminder$continent))
-my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
+# fitting data into matrix to create x matrix
+x_mat <- model.matrix(lifeExp ~ gdpPercap + continent,
+                      STAT302package::my_gapminder)
+
+# matrix multiplication to get yhat 
+yhat <- x_mat %*% my_estimates
+
+my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = yhat)
 ggplot2::ggplot(my_df, ggplot2::aes(x = fitted, y = actual)) +
   ggplot2::geom_point() +
   ggplot2::geom_abline(slope = 1, intercept = 0, col = "red", lty = 2) +
@@ -88,6 +83,7 @@ ggplot2::ggplot(my_df, ggplot2::aes(x = fitted, y = actual)) +
   ggplot2::labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
   ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 ```
+From the graph, we can see that our model is not a very good fit from the actual values with quite a high variance that deviates from the line. This shows that the correlation between lifeExp and the gdpPercap, continent factors are not strong enough, and that there are other factors influencing life Expectency.
 
 ## A tutorial for `my_knn_cv`
 
