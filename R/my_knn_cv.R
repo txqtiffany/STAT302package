@@ -1,7 +1,10 @@
-#' Fitting Linear Models
+#' k-Nearest Neighbour Classification
 #'
-#' This function is used to predict output class species using covariates bill_length_mm,
-#'  bill_depth_mm, flipper_length_mm, and body_mass_g.
+#' k-nearest neighbour classification for test set from training set.
+#'  For each row of the test set, the k nearest (in Euclidean distance)
+#'  training set vectors are found, and the classification is decided by
+#'   majority vote, with ties broken at random. If there are ties for the
+#'   kth nearest vector, all candidates are included in the vote.
 #'
 #' @param train input data frame
 #' @param cl true class value of your training data

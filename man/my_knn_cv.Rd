@@ -2,7 +2,7 @@
 % Please edit documentation in R/my_knn_cv.R
 \name{my_knn_cv}
 \alias{my_knn_cv}
-\title{Fitting Linear Models}
+\title{k-Nearest Neighbour Classification}
 \usage{
 my_knn_cv(train, cl, k_nn, k_cv)
 }
@@ -22,8 +22,11 @@ a list with objects
 \item{cv_err}{a numeric with the cross-validation misclassification error}
 }
 \description{
-This function is used to predict output class species using covariates bill_length_mm,
-bill_depth_mm, flipper_length_mm, and body_mass_g.
+k-nearest neighbour classification for test set from training set.
+For each row of the test set, the k nearest (in Euclidean distance)
+training set vectors are found, and the classification is decided by
+majority vote, with ties broken at random. If there are ties for the
+kth nearest vector, all candidates are included in the vote.
 }
 \examples{
 library(palmerpenguins)
