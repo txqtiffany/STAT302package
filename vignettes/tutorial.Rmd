@@ -118,6 +118,35 @@ However, in practice, I would choose k_nn = 7 because that is an optimal point w
 
 This is a basic example which shows you how to use `my_rf_cv`:
 
-```{r my_rf_cv}
+```{r my_rf_cv, warning = FALSE, message = FALSE}
 library(STAT302package)
+library(ggplot2)
+library(reshape2)
+library(kableExtra)
+cv_mse <- matrix(NA, 30, 10)
+for (i in c(2, 5, 10)) {
+  for (j in 1:30) {
+    cv_mse[j, i] <- my_rf_cv(i)
+  }
+}
+cv_mse_df <- as.data.frame(cv_mse[ , c(2, 5, 10)])
+colnames(cv_mse_df) <- c("k_2", "k_5", "k_10")
+cv_mse_df_long <- melt(cv_mse_df)
+ggplot(data = cv_mse_df_long,
+                aes(x = variable, y = value)) +
+  geom_boxplot(fill = "lightblue") +
+  theme_bw(base_size = 20) +
+  labs(title = "CV estimated MSE by value of k",
+       x = "",
+       y = "") +
+  theme(plot.title =
+          element_text(hjust = 0.5))
+mse_table <- data.frame("Mean" = c(mean(cv_mse_df$k_2), mean(cv_mse_df$k_5), mean(cv_mse_df$k_10)),
+                        "Standard Deviation" = c(sd(cv_mse_df$k_2), sd(cv_mse_df$k_5), sd(cv_mse_df$k_10)))
+row.names(mse_table) <- c("k = 2", "k = 5", "k = 10")
+kable_styling(kable(mse_table))
+
 ```
+
+Looking at the boxplot and the table, we can see that when k = 1, the mean as well as the standard deviation for CV estimated MSE is the highest, and the two numbers decreases as k increases. This means that the higher number of folds, the closer our perdiction is.
+
