@@ -48,8 +48,45 @@ Therefore, at the 5% significance level, there is sufficient evidence to support
 
 This is a basic example which shows you how to use `my_lm`:
 
-```{r my_lm}
+```{r my_lm part 1}
 library(STAT302package)
+model <- my_lm(formula = lifeExp ~ gdpPercap + continent, data = my_gapminder)
+print(round(model, 5))
+```
+The gdpPercap coefficient is really small, close to `r model[2, 1]`. Therefore, it means that the gdpPercap has a really little impact on the model for fitting lifeExp, indicating that we need to test its significance using hypothesis test. In other words, we are testing to see if the true mean of gdpPercap coefficient is 0. The null hypothesis is that it equals to 0, and the alternative hypothsis is that it doesn't equal to 0.
+
+```{r my_lm part 2}
+model[2, 4] < 0.05
+```
+
+Within the model, we can tell by the fourth column, which is our p values, that `r model[2, 4]` is less our cutoff of α = 0.05. Therefore, we reject the null coefficient that the mean of gdpPercap is 0, indicating that it is indeed significance. The reason behind why the number is so small might be because of the large scale of gdpPercap comparing to lifeExp.
+
+Now, we will use ggplot2 to plot the Actual vs. Fitted values.
+Interpret the Actual vs. Fitted plot and make a statement on what it tells you about model fit.
+
+```{r my_lm part 3}
+continent_value <- function(continent) {
+  if (continent == "Americas") {
+    return(model[1, 3])
+  } else if (continent == "Asia") {
+    return(model[1, 4])
+  } else if (continent == "Europe") {
+    return(model[1, 5])
+  } else if (continent == "Oceania") {
+    return(model[1, 6])
+  } else {
+    return(0)
+  }
+}
+
+mod_fits <- model[1, 1] + my_gapminder$gdpPercap * model[1, 2] + continent_value(as.vector(my_gapminder$continent))
+my_df <- data.frame(actual = my_gapminder$lifeExp, fitted = mod_fits)
+ggplot2::ggplot(my_df, ggplot2::aes(x = fitted, y = actual)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_abline(slope = 1, intercept = 0, col = "red", lty = 2) +
+  ggplot2::theme_bw(base_size = 15) +
+  ggplot2::labs(x = "Fitted values", y = "Actual values", title = "Actual vs. Fitted") +
+  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
 ```
 
 ## A tutorial for `my_knn_cv`
